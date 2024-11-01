@@ -316,6 +316,8 @@ pub struct Opts {
     /// {n}  'f' or 'file':         regular files
     /// {n}  'd' or 'dir' or 'directory':    directories
     /// {n}  'l' or 'symlink':      symbolic links
+    /// {n}  'lv' or 'symlink_valid':     valid symbolic links
+    /// {n}  'lb' or 'symlink_broken':     broken symbolic links
     /// {n}  's' or 'socket':       socket
     /// {n}  'p' or 'pipe':         named pipe (FIFO)
     /// {n}  'b' or 'block-device': block device
@@ -353,8 +355,8 @@ pub struct Opts {
         hide_possible_values = true,
         value_enum,
         help = "Filter by type: file (f), directory (d/dir), symlink (l), \
-                executable (x), empty (e), socket (s), pipe (p), \
-                char-device (c), block-device (b)",
+                valid symlink (lv), broken symlink (lb), executable (x), \
+                empty (e), socket (s), pipe (p), char-device (c), block-device (b)",
         long_help
     )]
     pub filetype: Option<Vec<FileType>>,
@@ -779,6 +781,10 @@ pub enum FileType {
     Directory,
     #[value(alias = "l")]
     Symlink,
+    #[value(alias = "lv")]
+    SymlinkValid,
+    #[value(alias = "lb")]
+    SymlinkBroken,
     #[value(alias = "b")]
     BlockDevice,
     #[value(alias = "c")]
