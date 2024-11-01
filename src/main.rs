@@ -274,6 +274,8 @@ fn construct_config(mut opts: Opts, pattern_regexps: &[String]) -> Result<Config
                     File => file_types.files = true,
                     Directory => file_types.directories = true,
                     Symlink => file_types.symlinks = true,
+                    SymlinkValid => file_types.symlinks_valid = true,
+                    SymlinkBroken => file_types.symlinks_broken = true,
                     Executable => {
                         file_types.executables_only = true;
                         file_types.files = true;
